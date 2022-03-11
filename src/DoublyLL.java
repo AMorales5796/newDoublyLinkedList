@@ -31,35 +31,6 @@ public class DoublyLL
     }//end of sizeofList method
     */
 
-    public int findSize()
-    {
-        Node current = head; //start off with the head of the list
-        int size = 0; //create a counter int variable
-        while (current != null)
-        {
-            size++;
-            current = current.next; //moves on to the next node
-        }//end of while loop
-        return size;
-    }//end of findSize method
-
-    public void showList()
-    {
-        if(head == null) {
-            System.out.println("List is empty");
-            return;
-        }//list null validation
-
-        Node current = head; //start off with the head of the list
-        while (current != null) //run below if the node is not the tail; it's not null
-        {
-            System.out.println(current.data); //prints out the data of the current node
-            current = current.next; //moves on to the next node
-        }//end of while loop
-        
-    }//end of showList method
-
-
     //INSERTIONS METHODS
     public void push(int newData)
     {
@@ -81,15 +52,13 @@ public class DoublyLL
         //pushing is the insertion method that inserts a new head node
         Node newDLLNode = new Node(newData); //first create the new temp node
 
-        newDLLNode.setPrev(tail); //previous pointer is null; that's what makes it the head
-        newDLLNode.setNext(null); //next pointer is linked as head
+        newDLLNode.setPrev(tail); //previous pointer is linked as tail
+        newDLLNode.setNext(null); //next pointer is null; because that is what makes a tail
 
         if (tail != null)
-        {
-            tail.next = newDLLNode; //links the previous head node's prev to the new head node
-        }
+            tail.next = newDLLNode; //links the previous tail node's next to the new tail node
 
-        tail = newDLLNode; //finally assign the whole new node as the head node
+        tail = newDLLNode; //finally assign the whole new node as the tail node
     }//end of pushAtEnd method
 
     public Node findGiven(int position)
@@ -156,6 +125,43 @@ Peak
 1) Pop then push
 */
 
+    //OTHER BRAIN METHODS
+
+    public int findSize()
+    {
+        Node current = head; //start off with the head of the list
+        int size = 0; //create a counter int variable
+        while (current != null)
+        {
+            size++;
+            current = current.next; //moves on to the next node
+        }//end of while loop
+        return size;
+    }//end of findSize method
+
+    public void showList()
+    {
+        if(head == null) {
+            System.out.println("List is empty");
+        }//list null validation
+        Node current = head; //start off with the head of the list
+
+        while (current != null) //run below if the node is not the tail; it's not null
+        {
+
+            if(current == tail)
+            {
+                int temp = getTailData();
+                System.out.print(temp + " ");
+            }
+
+            System.out.print(current.data + " ");
+            current = current.next; //moves on to the next node
+
+        }//end of while loop
+    }//end of showList method
+
+    //NODE CLASSSSSSSSS
     private class Node
     {
         //instance variables

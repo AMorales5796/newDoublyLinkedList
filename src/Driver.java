@@ -1,5 +1,3 @@
-import org.junit.platform.engine.support.hierarchical.Node;
-
 public class Driver extends DoublyLL
 {
     public static void main(String args[])
@@ -11,5 +9,6 @@ public class Driver extends DoublyLL
         dll.push(3);
         //dll.insertAfterGiven(1,4);//figure out how to refer to a specific node like an array list
         dll.showList();
+        //System.out.println(dll.getTailData());
     }
 }
