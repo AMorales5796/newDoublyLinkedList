@@ -1,8 +1,8 @@
 public class DoublyLL
 {
     public int data;
-    private Node head;
-    private Node tail;
+    Node head;
+    Node tail;
 
     public int getTailData()
     {
@@ -42,13 +42,37 @@ public class DoublyLL
         newDLLNode.setNext(head); //next pointer is linked as head
 
         if (head != null)
+        {
             head.prev = newDLLNode; //links the previous head node's prev to the new head node
+        }//end of if conditional
 
         head = newDLLNode; //finally assign the whole new node as the head node
     }//end of push method (IT WORKSSSSS!!!)
 
     public void pushAtEnd(int newData)
     {
+        Node newDLLNode = new Node(newData); //first create the new temp node
+
+        Node tail = head;
+
+        newDLLNode.next = null;
+
+        if (head == null) //if list is empty then the new node is the head
+        {
+            newDLLNode.prev = null;
+            head = newDLLNode;
+            return;
+        }//end of if conditional
+
+        while (tail.next != null)
+        {
+            tail = tail.next;
+        }//end of while loop
+
+        tail.next = newDLLNode;
+
+        newDLLNode.prev = tail;
+        /*
         //pushing is the insertion method that inserts a new head node
         Node newDLLNode = new Node(newData); //first create the new temp node
 
@@ -58,59 +82,37 @@ public class DoublyLL
         if (tail != null)
             tail.next = newDLLNode; //links the previous tail node's next to the new tail node
 
-        tail = newDLLNode; //finally assign the whole new node as the tail node
-    }//end of pushAtEnd method
+        tail = newDLLNode; //finally assign the whole new node as the tail node*/
+    }//end of pushAtEnd method (THIS WORKSSS TOOO!!)
 
-    public Node findGiven(int position)
+    void pop(Node del)
     {
-        Node current  = head; //start off with the head of the list
-        for (int i = 0; i < position; i++) //run below if the node is not the tail; it's not null
-        {
-            current = current.getNext(); //moves on to the next node
-        }//end of while
-        return current;
-    }//end of findGiven (this is for insertAfterGiven Method)
 
-    public void insertAfterGiven(int position, int newData)
-    {
-        if(findGiven(position).prev == null)
-        {
-            System.out.println("The previous node is null");
+        // Base case
+        if (head == null || del == null) {
             return;
-        }//null validation
-
-        Node newDLLNode = new Node(newData); //create the new temp node
-
-        newDLLNode.next = findGiven(position).next;
-
-        findGiven(position).next = newDLLNode;
-
-        newDLLNode.prev = findGiven(position);
-
-        Node newNextNode = newDLLNode.next;
-
-        if(newDLLNode != null)
-        {
-            newNextNode.prev = newDLLNode;
         }
-    }//end of insertAfterGiven method
 
-    /*
-     * At the end,
-     * Create a temp node
-     * setPrev to tail
-     * setNext to null
-     * if tail != null then set tail's next to newNode
-     * tail = newNode*/
-    /*
-    public void addAtTheEnd(Node nextNode, int )
-    {
-        if(prevNode == null)
-        {
-            System.out.println("The previous node is null");
-            return;
-        }//null validation
-    }*/
+        // If node to be deleted is head node
+        if (head == del) {
+            head = del.next;
+        }
+
+        // Change next only if node to be deleted
+        // is NOT the last node
+        if (del.next != null) {
+            del.next.prev = del.prev;
+        }
+
+        // Change prev only if node to be deleted
+        // is NOT the first node
+        if (del.prev != null) {
+            del.prev.next = del.next;
+        }
+
+        // Finally, free the memory occupied by del
+        return;
+    }
 
 /*
 Insertion
@@ -148,13 +150,6 @@ Peak
 
         while (current != null) //run below if the node is not the tail; it's not null
         {
-
-            if(current == tail)
-            {
-                int temp = getTailData();
-                System.out.print(temp + " ");
-            }
-
             System.out.print(current.data + " ");
             current = current.next; //moves on to the next node
 
@@ -168,6 +163,8 @@ Peak
         private int data;
         private Node prev; //instance of a self-referencing class
         private Node next;
+        private Node head;
+        private Node tail;
 
         //constructors
         public Node (int data)

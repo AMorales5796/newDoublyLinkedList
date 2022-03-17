@@ -32,6 +32,13 @@ public class Tests
     }
 
     @Test
+    public void testPushAtEnd3()
+    {
+        dll.pushAtEnd(3);
+        assertEquals(1,dll.findSize());
+    }
+
+    @Test
     public void testBlankDll()
     {
         dll.showList();
@@ -43,9 +50,36 @@ public class Tests
     {
         dll.push(1);
         assertEquals(1,dll.findSize());
-    }//this is incorrect
+    }
 
     @Test
-    public void sizeofList()
-    { }
+    public void testPushMethod2()
+    {
+        dll.push(10);
+        dll.push(20);
+        dll.push(30);
+        dll.push(40);
+        dll.push(50);
+        assertEquals(5,dll.findSize());
+    }
+
+    @Test
+    public void testPushMethod3()
+    {
+        dll.push(10);
+        dll.push(20);
+        dll.push(30);
+        assertEquals(3,dll.findSize());
+    }
+
+    @Test
+    public void testPopMethod()
+    {
+        dll.push(10);
+        dll.push(20);
+        dll.push(30);
+        //dll.pop(20);
+        assertEquals(2,dll.findSize());
+    }
+
 }
