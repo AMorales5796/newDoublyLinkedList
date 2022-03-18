@@ -78,7 +78,7 @@ public class Tests
         dll.push(10);
         dll.push(20);
         dll.push(30);
-        //dll.pop(20);
+        dll.pop(dll.head);
         assertEquals(2,dll.findSize());
     }
 

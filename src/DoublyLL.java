@@ -95,19 +95,28 @@ public class DoublyLL
 
         // If node to be deleted is head node
         if (head == del) {
-            head = del.next;
+            head.prev = null;
+            del.next = head.next;
+            del = head;
         }
 
         // Change next only if node to be deleted
         // is NOT the last node
         if (del.next != null) {
             del.next.prev = del.prev;
+            del.prev.next = del.next;
         }
 
         // Change prev only if node to be deleted
         // is NOT the first node
         if (del.prev != null) {
             del.prev.next = del.next;
+        }
+
+        if(tail == null) {
+            head.next = null;
+            del.prev = tail.prev;
+            del = tail;
         }
 
         // Finally, free the memory occupied by del
