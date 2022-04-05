@@ -7,7 +7,8 @@ public class Driver extends DoublyLL
         dll.push(1);
         dll.pushAtEnd(4);
         dll.push(3);
-        dll.pop(dll.head);
+        dll.pop(dll.head, dll.head);
+        dll.pop(dll.head, dll.head);
        //dll.insertAfterGiven(1,4);//figure out how to refer to a specific node like an array list
         dll.showList();
         //System.out.println(dll.getTailData());

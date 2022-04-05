@@ -1,6 +1,6 @@
 public class DoublyLL
 {
-    Node head, tail, next, tail;
+    Node head, tail, next, prev;
 
     public int getTailData()
     {
@@ -83,7 +83,7 @@ public class DoublyLL
         tail = newDLLNode; //finally assign the whole new node as the tail node*/
     }//end of pushAtEnd method (THIS WORKSSS TOOO!!)
 
-    void pop(Node del)
+    void pop(Node head_ref, Node del)
     {
 
         // Base case
@@ -91,26 +91,22 @@ public class DoublyLL
             return;
         }
 
+        // If node to be deleted is head node
         if (head == del) {
-            head.prev = null;
-            del.next = head.next;
-            del = head;
-        }//If node to be deleted is head node
+            head = del.next;
+        }
 
+        // Change next only if node to be deleted
+        // is NOT the last node
         if (del.next != null) {
             del.next.prev = del.prev;
-            del.prev.next = del.next;
-        }//If node to be deleted is not the last node
+        }
 
+        // Change prev only if node to be deleted
+        // is NOT the first node
         if (del.prev != null) {
             del.prev.next = del.next;
-        }//If node to be deleted is not the first node
-
-        else if(tail == null) {
-            head.next = null;
-            del.prev = tail.prev;
-            del = tail;
-        }//If node to be deleted is tail node
+        }
 
         // Finally, free the memory occupied by del
         return;
@@ -169,9 +165,9 @@ Peak
         private Node prev;
 
         //constructors
-        public Node (int data)
+        Node (int newData)
         {
-            this.data = data;
+            this.data = newData;
         }
 
         //getters
