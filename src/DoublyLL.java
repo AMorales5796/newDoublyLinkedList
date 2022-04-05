@@ -1,8 +1,6 @@
 public class DoublyLL
 {
-    public int data;
-    Node head;
-    Node tail;
+    Node head, tail, next, tail;
 
     public int getTailData()
     {
@@ -93,31 +91,26 @@ public class DoublyLL
             return;
         }
 
-        // If node to be deleted is head node
         if (head == del) {
             head.prev = null;
             del.next = head.next;
             del = head;
-        }
+        }//If node to be deleted is head node
 
-        // Change next only if node to be deleted
-        // is NOT the last node
         if (del.next != null) {
             del.next.prev = del.prev;
             del.prev.next = del.next;
-        }
+        }//If node to be deleted is not the last node
 
-        // Change prev only if node to be deleted
-        // is NOT the first node
         if (del.prev != null) {
             del.prev.next = del.next;
-        }
+        }//If node to be deleted is not the first node
 
-        if(tail == null) {
+        else if(tail == null) {
             head.next = null;
             del.prev = tail.prev;
             del = tail;
-        }
+        }//If node to be deleted is tail node
 
         // Finally, free the memory occupied by del
         return;
@@ -165,15 +158,15 @@ Peak
         }//end of while loop
     }//end of showList method
 
-    //NODE CLASSSSSSSSS
+    //NODE CLASS
     private class Node
     {
         //instance variables
         private int data;
-        private Node prev; //instance of a self-referencing class
-        private Node next;
         private Node head;
         private Node tail;
+        private Node next;
+        private Node prev;
 
         //constructors
         public Node (int data)
@@ -197,11 +190,27 @@ Peak
             return next;
         }
 
+        public Node getHead(){ return head; }
+
+        public Node getTail(){ return tail; }
 
         //setters
         public void setData(int data) {
             this.data = data;
         }
+
+        public void setPrev() {
+            this.prev = prev;
+        }
+
+        public void setNext() {
+            this.next = next;
+        }
+
+        public void setHead() { this.head = head; }
+
+        public void setTail() { this.tail = tail; }
+
 
         public void setPrev(Node prev) {
             this.prev = prev;
